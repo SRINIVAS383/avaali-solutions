@@ -26,6 +26,17 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <configuration>
+  <jboss>
+    [...]
+    <loader-repository loaderRepositoryClass="dot.com.LoaderRepository">
+      dot.com:loader=unique-archive-name
+    </loader-repository>
+    <loader-repository-config configParserClass="dot.com.LoaderParser">
+      java2ParentDelegation=true
+    </loader-repository-config>
+  </jboss>
+</configuration>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -52,6 +63,19 @@
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
         </plugin>
+        <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>auto-clean</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>2.5.2</version>
